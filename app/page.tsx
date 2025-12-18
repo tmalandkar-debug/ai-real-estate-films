@@ -7,9 +7,9 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Home() {
-  const plot = useRef<HTMLDivElement>(null);
-  const construction = useRef<HTMLDivElement>(null);
-  const tower = useRef<HTMLDivElement>(null);
+  const plot = useRef<HTMLImageElement>(null);
+  const construction = useRef<HTMLImageElement>(null);
+  const tower = useRef<HTMLImageElement>(null);
 
   useEffect(() => {
     const tl = gsap.timeline({
@@ -21,10 +21,10 @@ export default function Home() {
       },
     });
 
-    tl.fromTo(plot.current, { opacity: 1 }, { opacity: 0, duration: 1 })
-      .fromTo(construction.current, { opacity: 0 }, { opacity: 1, duration: 1 })
-      .fromTo(construction.current, { opacity: 1 }, { opacity: 0, duration: 1 })
-      .fromTo(tower.current, { opacity: 0 }, { opacity: 1, duration: 1 });
+    tl.to(plot.current, { opacity: 0, duration: 1 })
+      .to(construction.current, { opacity: 1, duration: 1 })
+      .to(construction.current, { opacity: 0, duration: 1 })
+      .to(tower.current, { opacity: 1, duration: 1 });
   }, []);
 
   return (
@@ -59,39 +59,22 @@ export default function Home() {
             position: "relative",
           }}
         >
-          {/* EMPTY PLOT */}
-          <div
+          <img
             ref={plot}
-            style={{
-              position: "absolute",
-              width: "300px",
-              height: "200px",
-              background: "#2f2f2f",
-            }}
+            src="/images/plot.png"
+            style={{ position: "absolute", width: "60%" }}
           />
 
-          {/* CONSTRUCTION */}
-          <div
+          <img
             ref={construction}
-            style={{
-              position: "absolute",
-              width: "160px",
-              height: "350px",
-              background: "#555",
-              opacity: 0,
-            }}
+            src="/images/construction.png"
+            style={{ position: "absolute", width: "45%", opacity: 0 }}
           />
 
-          {/* FINAL TOWER */}
-          <div
+          <img
             ref={tower}
-            style={{
-              position: "absolute",
-              width: "180px",
-              height: "450px",
-              background: "#aaa",
-              opacity: 0,
-            }}
+            src="/images/tower.png"
+            style={{ position: "absolute", width: "50%", opacity: 0 }}
           />
         </div>
       </div>
